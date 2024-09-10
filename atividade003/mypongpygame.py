@@ -44,12 +44,14 @@ player_1_move_down = False
 player_2 = pygame.image.load("assets/player.png")
 player_2_y = 300
 
+
 # ball
 ball = pygame.image.load("assets/ball.png")
 ball_x = 640
 ball_y = 360
 ball_dx = 5
 ball_dy = 5
+
 
 # score
 score_1 = 0
@@ -92,15 +94,18 @@ while game_loop:
             bounce_sound_effect.play()
 
         # ball collision with the player 1 's paddle
-        if 70 < ball_x < 100 :
+        if 70 < ball_x < 100:
             if player_1_y < ball_y + 50:
                 if player_1_y + 150 > ball_y:
-                    if player_1_y + 50 < ball_y + 25 :
-                        ball_dy = random.randint(5,8)
-                    elif player_1_y + 100 > ball_y:
-                        ball_dy = random.randint(-8,-5)
+                    if player_1_y + 50 > ball_y or player_1_y + 50 < ball_y:
+                        ball_dy = random.randint(-10,8)
+                    elif player_1_y + 100 > ball_y or player_1_y + 100 < ball_y:
+                        ball_dy = random.randint(-2,3)
+                    elif player_1_y + 150 > ball_y or player_1_y + 150 < ball_y:
+                        ball_dy = random.randint(-8,15)
                     ball_dx *= -1
                     bounce_sound_effect.play()
+    
 
         # ball collision with the player 2 's paddle
         if ball_x > 1160:
@@ -110,6 +115,8 @@ while game_loop:
                         ball_dy = random.randint(-8, 10)
                     ball_dx *= -1
                     bounce_sound_effect.play()
+
+
 
         # scoring points
         if ball_x < 0:
@@ -128,6 +135,7 @@ while game_loop:
             scoring_sound_effect.play()
 
         # ball movement
+
         ball_x = ball_x + ball_dx
         ball_y = ball_y + ball_dy
 
@@ -152,7 +160,7 @@ while game_loop:
             player_1_y = 565
 
         # player 2 "Artificial Intelligence"
-        player_2_y = ball_y + 25
+        player_2_y = ball_y - 25
         if player_2_y <= 0:
             player_2_y = 5
         elif player_2_y >= 570:
