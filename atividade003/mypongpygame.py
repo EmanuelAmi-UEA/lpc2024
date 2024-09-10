@@ -12,7 +12,7 @@ pygame.init()
 COLOR_BLACK = (0, 0, 0)
 COLOR_WHITE = (255, 255, 255)
 
-SCORE_MAX = 10
+SCORE_MAX = 5
 
 size = (1280, 720)
 screen = pygame.display.set_mode(size)
@@ -43,7 +43,6 @@ player_1_move_down = False
 # player 2 - robot
 player_2 = pygame.image.load("assets/player.png")
 player_2_y = 300
-player_2_speed = 4
 
 # ball
 ball = pygame.image.load("assets/ball.png")
